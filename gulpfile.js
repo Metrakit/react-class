@@ -18,22 +18,22 @@ var gulp           = require('gulp'),
 
 var reload = browserSync.reload;
 
-// paths
+// Paths
 var path = {
-        src: "src/",
-        dist: "dist/",
-        bower: 'node_modules/bower_components',
-        icons: path.join(__dirname, "node_modules/gulp-notify/node_modules/node-notifier/node_modules/growly/example/")
+  src: "src/",
+  dist: "dist/",
+  bower: 'node_modules/bower_components',
+  icons: path.join(__dirname, "node_modules/gulp-notify/node_modules/node-notifier/node_modules/growly/example/")
 };
 
 var url = "http://react.dev";
 
 // Error Handler - SCSS
 var plumberErrorHandler = { errorHandler: notify.onError({
-        title: "SCSS ERROR",
-        message: "Error: <%= error.message %>",
-        icon: path.icons + "muffin.png",
-    })
+    title: "SCSS ERROR",
+    message: "Error: <%= error.message %>",
+    icon: path.icons + "muffin.png",
+  })
 };
 
 // Scripts task
@@ -53,7 +53,7 @@ gulp.task('scripts', ['eslint'], function () {
 
 // SCSS task
 gulp.task('scss', function() {
-  gulp.src(path.src + 'scss/*.scss')
+  return gulp.src(path.src + 'scss/*.scss')
     .pipe(plumber(plumberErrorHandler))
     .pipe(sourcemaps.init())
     .pipe(sass())
@@ -69,26 +69,26 @@ gulp.task('scss', function() {
 
 // Eslint
 gulp.task('eslint', function () {
-    return gulp.src(['src/**/*.js'])
-        .pipe(eslint({
-          baseConfig: {
-            "ecmaFeatures": {
-               "jsx": true
-             }
-          }
-        }))
-        .pipe(eslint.format())
-        .pipe(eslint.failOnError())
-        .on("error", notify.onError(function (error) {
-          return "ESLint: " + error.message;
-        }));
+  return gulp.src(['src/**/*.js'])
+      .pipe(eslint({
+        baseConfig: {
+          "ecmaFeatures": {
+             "jsx": true
+           }
+        }
+      }))
+      .pipe(eslint.format())
+      .pipe(eslint.failOnError())
+      .on("error", notify.onError(function (error) {
+        return "ESLint: " + error.message;
+      }));
 });
 
 // Browser-sync
 gulp.task('browser-sync', function() {
-    browserSync({
-        proxy: url
-    });
+  browserSync({
+      proxy: url
+  });
 });
 
 // Watch task
