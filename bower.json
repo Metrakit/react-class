@@ -1,0 +1,23 @@
+{
+  "name": "react-template",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Metrakit"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Metrakit/react-template",
+  "moduleType": [
+    "es6"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.0"
+  }
+}
