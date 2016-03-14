@@ -13,7 +13,8 @@ var gulp           = require('gulp'),
     uglify         = require('gulp-uglify')
     path           = require('path'),
     notify         = require('gulp-notify'),
-    concat         = require('gulp-concat');
+    concat         = require('gulp-concat'),
+    eslint         = require('gulp-eslint');
 
 var reload = browserSync.reload;
 
@@ -36,9 +37,10 @@ var plumberErrorHandler = { errorHandler: notify.onError({
 };
 
 // Scripts task
-gulp.task('scripts', function () {
+gulp.task('scripts', ['eslint'], function () {
   return browserify({
     entries: path.src + 'js/app.js', 
+    extensions: ['.js', '.jsx'],
     debug: true
   })
   .transform("babelify", {presets: ["es2015", "react"]})
@@ -63,6 +65,23 @@ gulp.task('scss', function() {
     })))
     .pipe(gulp.dest(path.dist + 'css'))
     .pipe(reload({ stream: true }));
+});
+
+// Eslint
+gulp.task('eslint', function () {
+    return gulp.src(['src/**/*.js'])
+        .pipe(eslint({
+          baseConfig: {
+            "ecmaFeatures": {
+               "jsx": true
+             }
+          }
+        }))
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError())
+        .on("error", notify.onError(function (error) {
+          return "ESLint: " + error.message;
+        }));
 });
 
 // Browser-sync
