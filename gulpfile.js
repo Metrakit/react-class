@@ -21,7 +21,7 @@ var reload = browserSync.reload;
 // Paths
 var path = {
   src: "src/",
-  dist: "dist/",
+  dist: "app/",
   bower: 'node_modules/bower_components',
   icons: path.join(__dirname, "node_modules/gulp-notify/node_modules/node-notifier/node_modules/growly/example/")
 };
