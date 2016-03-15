@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Metrakit/react-template#readme",
   "dependencies": {
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.0-beta.6",
