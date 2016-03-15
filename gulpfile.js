@@ -93,9 +93,9 @@ gulp.task('browser-sync', function() {
 
 // Watch task
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.js', ['scripts', browserSync.reload]);
-  gulp.watch('src/**/.scss', ['scss']);
-  gulp.watch('dist/**/*.html', browserSync.reload);
+  gulp.watch(path.src + '**/*.js', ['scripts', browserSync.reload]);
+  gulp.watch(path.src + '**/.scss', ['scss']);
+  gulp.watch(path.dist + '**/*.html', browserSync.reload);
 });
 
 // Default task
